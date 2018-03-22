@@ -11,7 +11,7 @@ class Henchman {
     init(nickname:String) {
       self._nickname = nickname
     }
-    func pack(packaging: inout Packaging,toy:Toy) {
+    func pack(packaging: Packaging,toy:Toy) {
         guard packaging.isOpen || packaging is GiftWrap else {
           print("Sorry this package is not open")
           return
@@ -33,5 +33,19 @@ class Henchman {
         packaging.toy = nil
         print("Ooooooh! Just unpacking the toy ~~ \(toy.type) ~~")
         return toy
+    }
+
+    func put(furniture: Furniture, obj: Object) {
+      let isSuccess: Bool = furniture.put(obj)
+      if isSuccess {
+        print("Well! I'm putting object ~~ \(type(of: obj)) ~~ on ~~ \(type(of: furniture)) ~~")
+      }
+    }
+
+    func take(furniture: Furniture) {
+      let takeObj: Object? = furniture.take()
+      if takeObj != nil {
+        print("Well! I'm taking object ~~ \(type(of: takeObj)) ~~ from ~~ \(type(of: furniture)) ~~")
+      }      
     }
 }
